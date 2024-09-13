@@ -1,0 +1,158 @@
+Assignment 3
+
+1.Write a Python program to create a class representing a stack data structure. Include methods for pushing and popping elements
+
+class mydata:
+    def __init__(self, data):
+        self.data = data
+    def push(self,item):
+        self.data.append(item)
+        print(f"Pushed {item} to mydata")
+    def pop(self):
+        data = self.data.pop()
+        print(f"Poped {data} from mydata")
+        
+
+mydata = mydata([1,2,3,4,5])
+
+mydata.push(7)  ---- Pushed 7 to mydata
+mydata.pop()    ---- Poped 7 from mydata
+
+2.Write a Python program to create a class representing a linked list data structure. Include methods for displaying linked list data, inserting and deleting nodes
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class List:
+    def __init__(self):
+        self.head = None
+    def display(self):
+        nodes = self.head
+        while nodes:
+            print(nodes.data)
+            nodes = nodes.next
+    def insert(self,data):
+        new_node = Node(data)
+        if self.head is None:
+            self.head = new_node
+            return            
+        last_node = self.head
+        while last_node.next:  
+            last_node = last_node.next
+
+        last_node.next = new_node
+ 
+    def delete(self,key):
+        current = self.head
+        if current and current.data == key:
+            self.head = current.next   
+            current = None   
+            return
+
+        prev = None
+        while current and current.data != key:
+            prev = current   
+            current = current.next
+
+        if current is None:
+            print(f"Node with value {key} not found.")
+            return
+
+        prev.next = current.next
+        current = None
+
+
+
+list = List()
+list.display()
+list.insert(2)
+list.insert(12)
+list.insert(22)
+list.insert(23)
+list.insert(13)
+list.delete(13)
+list.display()
+
+
+3.Write a Python program to create a class representing a shopping cart. Include methods for adding and removing items, and calculating the total price.
+
+class shopingcart():
+    def __init__(self):
+        self.items=[]
+
+    def additem(self,name,quantity,price):
+        self.items.append({
+            'name': name,
+            'quantity': quantity,
+            'price': price
+        })
+        print(f"Added item: {name} , Quantity: {quantity} ,Price: {price}  to the cart.")
+    def display(self):
+        totalprice = 0
+        if not self.items:
+            print("Shopping cart is empty.")
+            return
+        for item in self.items:
+            data = item
+            totalprice = item['quantity'] *  item['price']
+            print(f"'Name:'{item['name']},'Quantity:'{item['quantity']},'Price:'{item['price']},'Totalprice:'{totalprice}")
+
+    def delete(self,item_name):
+        for item in self.items:
+            if item['name'] == item_name:
+                self.items.remove(item)
+                print(f"deleted {item_name} from the cart.")
+                return
+        print(f"Item {item_name} not found in the cart.")
+
+    def total(self):
+        subtotal = 0
+        total = 0
+        for item in self.items:
+           subtotal = item['quantity'] *  item['price']
+           total += subtotal   
+        print(f"Total price is  {total}")
+   
+
+shopingcart= shopingcart()
+
+shopingcart.additem("Book",10,45)
+shopingcart.additem("Pen",20,20)
+shopingcart.additem("Pencil",10,10)
+
+	Added item: Book , Quantity: 10 ,Price: 45  to the cart.
+	Added item: Pen , Quantity: 20 ,Price: 20  to the cart.
+	Added item: Pencil , Quantity: 10 ,Price: 10  to the cart.
+shopingcart.display()
+	'Name:'Book,'Quantity:'10,'Price:'45,'Totalprice:'450
+	'Name:'Pen,'Quantity:'20,'Price:'20,'Totalprice:'400
+	'Name:'Pencil,'Quantity:'10,'Price:'10,'Totalprice:'100
+shopingcart.delete('Book')
+	deleted Book from the cart.
+shopingcart.total()
+	Total price is  500
+
+4.Write a Python program to create a class representing a stack data structure. Include methods for pushing, popping and displaying elements
+
+class mydata:
+    def __init__(self):
+        self.data = []
+    def push(self,item):
+        self.data.append(item)
+        print(f"Pushed {item} to mydata")
+    def pop(self):
+        data = self.data.pop()
+        print(f"Poped {data} from mydata")
+    def display(self):
+        return self.data
+        
+        
+mydata = mydata()
+
+mydata.push(11)    ---Pushed 11 to mydata
+mydata.display()   ---[11]
+mydata.pop()       ---Poped 11 from mydata
+mydata.display()
+
